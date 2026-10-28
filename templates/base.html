@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b16">
+  <meta name="description" content="Voyara — find your next horizon. A cinematic flight booking demo.">
+  <title>{% block title %}Voyara — Find your next horizon{% endblock %}</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Manrope:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+  <script defer src="{{ url_for('static', filename='js/main.js') }}"></script>
+  {% block head %}{% endblock %}
+</head>
+<body>
+  <div class="site-grain" aria-hidden="true"></div>
+  <header class="nav-wrap">
+    <a class="brand" href="{{ url_for('index') }}" aria-label="Voyara home">
+      <span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 25.5 35 8 22 35l-4.2-11.2L5 25.5Z" fill="currentColor"/><path d="m17.8 23.8 8-6.4" stroke="#080b16" stroke-width="1.6" stroke-linecap="round"/></svg></span>
+      <span>voyara<span class="brand-dot">.</span></span>
+    </a>
+    <button class="menu-toggle" aria-label="Open navigation" aria-expanded="false"><span></span><span></span></button>
+    <nav class="main-nav" aria-label="Main navigation">
+      <a href="{{ url_for('index') }}#explore">Explore</a>
+      <a href="{{ url_for('index') }}#journey">The Voyara way</a>
+      <a href="{{ url_for('index') }}#destinations">Destinations</a>
+    </nav>
+    <a class="nav-cta" href="{{ url_for('index') }}#book">Find a flight <span>↗</span></a>
+  </header>
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}<div class="flash-stack">{% for category, message in messages %}<div class="flash {{ category }}">{{ message }}</div>{% endfor %}</div>{% endif %}
+  {% endwith %}
+  <main>{% block content %}{% endblock %}</main>
+  <footer class="footer">
+    <a class="brand footer-brand" href="{{ url_for('index') }}"><span class="brand-mark"><svg viewBox="0 0 40 40" aria-hidden="true"><path d="M5 25.5 35 8 22 35l-4.2-11.2L5 25.5Z" fill="currentColor"/></svg></span><span>voyara<span class="brand-dot">.</span></span></a>
+    <p>Make room for somewhere new.</p>
+    <span class="footer-copy">© 2026 Voyara concept · Demo project</span>
+    <p class="demo-note">Sample flight data only. No live inventory or real payments.</p>
+  </footer>
+</body>
+</html>

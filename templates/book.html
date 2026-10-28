@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}Demo booking — Voyara{% endblock %}
+{% block content %}
+<section class="form-page">
+  <div class="form-intro"><div class="section-kicker"><span>02</span> A FEW DETAILS</div><h1>Make it <em>yours.</em></h1><p>Continue through a demo booking flow. This form does not reserve a seat or charge you.</p></div>
+  <div class="booking-layout">
+    <div class="booking-form-card"><div class="form-step"><span>01</span><div><strong>Passenger details</strong><small>For demonstration only</small></div></div>
+      <form method="post" class="passenger-form">
+        <label for="name">Full name</label><input id="name" name="name" autocomplete="name" placeholder="Your full name" required>
+        <label for="email">Email address</label><input id="email" name="email" type="email" autocomplete="email" placeholder="you@example.com" required>
+        <label for="passengers">Number of travellers</label><select id="passengers" name="passengers">{% for n in range(1,6) %}<option value="{{ n }}">{{ n }} traveller{% if n > 1 %}s{% endif %}</option>{% endfor %}</select>
+        <div class="form-warning"><span>ⓘ</span><p><strong>Demo only.</strong> Do not enter sensitive personal information. No real reservation or payment will be made.</p></div>
+        <button class="search-button full-button" type="submit">Continue to demo confirmation <span>↗</span></button>
+      </form>
+    </div>
+    <aside class="trip-summary"><span class="muted-label">YOUR SAMPLE JOURNEY</span><div class="summary-route"><div><small>{{ flight.from_city }}</small><strong>{{ flight.from_code }}</strong><span>{{ flight.depart }}</span></div><div class="summary-flight">✈<span>{{ flight.duration }}</span></div><div><small>{{ flight.to_city }}</small><strong>{{ flight.to_code }}</strong><span>{{ flight.arrive }}</span></div></div><div class="summary-divider"></div><div class="summary-line"><span>Flight</span><strong>{{ flight.airline }}</strong></div><div class="summary-line"><span>Flight number</span><strong>{{ flight.id }}</strong></div><div class="summary-line"><span>Fare (sample)</span><strong>{{ flight.price|inr }}</strong></div><div class="summary-total"><span>Indicative fare</span><strong>{{ flight.price|inr }}</strong></div><p class="sample-disclaimer">Fictional fare. Taxes, baggage and availability are not calculated.</p></aside>
+  </div>
+</section>
+{% endblock %}

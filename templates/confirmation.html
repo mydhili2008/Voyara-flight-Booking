@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}Demo confirmation — Voyara{% endblock %}
+{% block content %}
+<section class="confirmation-page">
+  <div class="confirmation-icon">✓</div><div class="section-kicker"><span>03</span> END OF DEMO FLOW</div><h1>Imagine the<br><em>possibilities.</em></h1>
+  <p class="confirmation-lead">Thanks, {{ name }}. You've completed the Voyara prototype flow.</p>
+  <div class="confirmation-card"><div class="confirmation-top"><span>DEMO REFERENCE</span><strong>{{ reference }}</strong></div><div class="summary-route"><div><small>{{ flight.from_city }}</small><strong>{{ flight.from_code }}</strong><span>{{ flight.depart }}</span></div><div class="summary-flight">✈<span>{{ flight.duration }}</span></div><div><small>{{ flight.to_city }}</small><strong>{{ flight.to_code }}</strong><span>{{ flight.arrive }}</span></div></div><div class="summary-divider"></div><div class="summary-line"><span>Passenger</span><strong>{{ name }}</strong></div><div class="summary-line"><span>Email entered</span><strong>{{ email }}</strong></div><div class="summary-line"><span>Travellers</span><strong>{{ passengers }}</strong></div><div class="summary-line"><span>Sample fare per person</span><strong>{{ flight.price|inr }}</strong></div></div>
+  <div class="confirmation-notice"><span>ⓘ</span><p><strong>This is not a ticket or reservation.</strong> No booking has been saved, no airline was contacted, and no payment was processed.</p></div>
+  <a class="search-button return-home" href="{{ url_for('index') }}">Return to Voyara <span>↗</span></a>
+</section>
+{% endblock %}

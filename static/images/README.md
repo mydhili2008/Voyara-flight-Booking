@@ -1,0 +1,1 @@
+Image assets are loaded from Unsplash and the hero video from Pexels at runtime. Internet access is needed to display these remote assets. Replace the URLs in templates/index.html with licensed local assets if you prefer an offline or production build.

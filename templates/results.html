@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}Sample flights — Voyara{% endblock %}
+{% block content %}
+<section class="results-hero">
+  <div class="section-kicker"><span>01</span> YOUR ROUTE, YOUR RULES</div>
+  <h1>Every journey<br>starts <em>somewhere.</em></h1>
+  <p>These are sample results for the Voyara demo — not live availability.</p>
+</section>
+<section class="results-wrap">
+  <form class="results-search" action="{{ url_for('search') }}" method="get">
+    <label>From<select name="origin"><option value="HYD" {% if origin == 'HYD' %}selected{% endif %}>Hyderabad · HYD</option><option value="BLR" {% if origin == 'BLR' %}selected{% endif %}>Bengaluru · BLR</option><option value="DEL" {% if origin == 'DEL' %}selected{% endif %}>New Delhi · DEL</option><option value="BOM" {% if origin == 'BOM' %}selected{% endif %}>Mumbai · BOM</option></select></label>
+    <label>To<input name="destination" value="{{ destination }}" placeholder="Airport code or city"></label>
+    <label>Departure<input type="date" name="date" value="{{ date }}"></label>
+    <label>Travellers<select name="passengers">{% for n in range(1,6) %}<option value="{{ n }}" {% if passengers|int == n %}selected{% endif %}>{{ n }} traveller{% if n > 1 %}s{% endif %}</option>{% endfor %}</select></label>
+    <button class="search-button" type="submit">Update search ↗</button>
+  </form>
+  <div class="results-title"><div><span class="muted-label">VOYARA SAMPLE SCHEDULE</span><h2>{{ flights|length }} <em>journeys</em> to explore</h2></div><span class="demo-chip">DEMO DATA</span></div>
+  {% if flights %}
+  <div class="results-list">
+    {% for flight in flights %}
+    <article class="result-card">
+      <div class="result-airline"><div class="flight-symbol {{ flight.color }}">✈</div><div><strong>{{ flight.airline }}</strong><small>{{ flight.id }} · Economy</small></div></div>
+      <div class="result-time"><strong>{{ flight.depart }}</strong><small>{{ flight.from_code }} · {{ flight.from_city }}</small></div>
+      <div class="result-duration"><span>{{ flight.duration }}</span><div class="route-line"><i></i></div><small>{{ flight.stops }}</small></div>
+      <div class="result-time"><strong>{{ flight.arrive }}</strong><small>{{ flight.to_code }} · {{ flight.to_city }}</small></div>
+      <div class="result-fare"><small>Sample fare / person</small><strong>{{ flight.price|inr }}</strong><a class="small-button" href="{{ url_for('book', flight_id=flight.id) }}">Select flight ↗</a></div>
+    </article>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="empty-state"><span>✈</span><h3>No exact sample match</h3><p>Try searching from Hyderabad (HYD), or choose a destination shown on the home page.</p><a class="small-button" href="{{ url_for('index') }}#book">Back to search</a></div>
+  {% endif %}
+  <p class="sample-disclaimer">Sample fares are illustrative only. No seat availability, booking, or payment is confirmed.</p>
+</section>
+{% endblock %}

@@ -1,0 +1,71 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero" id="top">
+  <div class="hero-media" aria-hidden="true">
+    <video class="hero-video" autoplay muted loop playsinline poster="https://images.unsplash.com/photo-1436491865332-7a61a109cc05?auto=format&fit=crop&w=2000&q=85">
+      <source src="https://videos.pexels.com/video-files/3129595/3129595-hd_1920_1080_25fps.mp4" type="video/mp4">
+    </video>
+    <div class="hero-image-fallback"></div>
+  </div>
+  <div class="hero-shade"></div>
+  <div class="hero-orbit orbit-one"></div><div class="hero-orbit orbit-two"></div>
+  <div class="hero-content">
+    <div class="eyebrow"><span class="eyebrow-line"></span> THE WORLD, OPENED UP <span class="eyebrow-star">✳</span></div>
+    <h1>Somewhere<br><em>calls.</em> We take you.</h1>
+    <p class="hero-copy">Leave the ordinary behind. Discover a more thoughtful way to find your next horizon.</p>
+    <a href="#book" class="round-link"><span>Start your journey</span><b>↓</b></a>
+  </div>
+  <div class="hero-bottom"><span>01 / THE ART OF GETTING THERE</span><span class="scroll-cue"><i></i> SCROLL TO EXPLORE</span><span>17° 23′ N · 78° 29′ E</span></div>
+  <div class="plane-trail" aria-hidden="true"><span class="plane">✈</span></div>
+</section>
+
+<section class="booking-section" id="book">
+  <div class="section-kicker reveal"><span>01</span> YOUR NEXT CHAPTER</div>
+  <div class="booking-heading reveal"><h2>Where to <em>next?</em></h2><p>One little search. A whole new world.</p></div>
+  <form class="search-card reveal" action="{{ url_for('search') }}" method="get">
+    <div class="field airport-field">
+      <label for="origin">From</label>
+      <div class="field-value"><span class="field-icon">⌖</span><select id="origin" name="origin"><option value="HYD">Hyderabad · HYD</option><option value="BLR">Bengaluru · BLR</option><option value="DEL">New Delhi · DEL</option><option value="BOM">Mumbai · BOM</option></select></div>
+    </div>
+    <button class="swap-button" type="button" aria-label="Swap origin and destination" title="Swap airports">⇄</button>
+    <div class="field airport-field">
+      <label for="destination">To</label>
+      <div class="field-value"><span class="field-icon">✦</span><select id="destination" name="destination"><option value="">Anywhere</option><option value="DEL">New Delhi · DEL</option><option value="BLR">Bengaluru · BLR</option><option value="BOM">Mumbai · BOM</option><option value="GOI">Goa · GOI</option><option value="MAA">Chennai · MAA</option><option value="COK">Kochi · COK</option></select></div>
+    </div>
+    <div class="field date-field"><label for="date">Departure</label><div class="field-value"><span class="field-icon">▦</span><input id="date" type="date" name="date" min="{{ today }}" value="{{ today }}"></div></div>
+    <div class="field passenger-field"><label for="passengers">Travellers</label><div class="field-value"><span class="field-icon">♙</span><select id="passengers" name="passengers"><option value="1">1 traveller</option><option value="2">2 travellers</option><option value="3">3 travellers</option><option value="4">4 travellers</option><option value="5">5 travellers</option></select></div></div>
+    <button class="search-button" type="submit">Search flights <span>↗</span></button>
+  </form>
+  <p class="sample-disclaimer">✳ Demo experience · Sample fares only, not live airline inventory.</p>
+</section>
+
+<section class="destinations-section" id="destinations">
+  <div class="section-head reveal"><div><div class="section-kicker"><span>02</span> THE WORLD IS WAITING</div><h2>Find your <em>elsewhere.</em></h2></div><p>From city lights to slow mornings by the sea, your next story starts with a place.</p></div>
+  <div class="destination-grid">
+    <a class="destination-card destination-large reveal" href="{{ url_for('search', destination='GOI') }}"><img src="https://images.unsplash.com/photo-1512343879784-a960bf40e7f2?auto=format&fit=crop&w=1200&q=85" alt="Palm trees and beach in Goa"><span class="destination-number">01 / INDIA</span><span class="destination-info"><span><small>THE COASTAL RESET</small><strong>Goa</strong></span><span class="destination-arrow">↗</span></span></a>
+    <a class="destination-card reveal" href="{{ url_for('search', destination='DEL') }}"><img src="https://images.unsplash.com/photo-1587474260584-136574528ed5?auto=format&fit=crop&w=1000&q=85" alt="Historic architecture in New Delhi"><span class="destination-number">02 / INDIA</span><span class="destination-info"><span><small>OLD SOUL, NEW ENERGY</small><strong>New Delhi</strong></span><span class="destination-arrow">↗</span></span></a>
+    <a class="destination-card reveal" href="{{ url_for('search', destination='COK') }}"><img src="https://images.unsplash.com/photo-1602216056096-3b40cc0c9944?auto=format&fit=crop&w=1000&q=85" alt="Lush green Kerala backwaters"><span class="destination-number">03 / INDIA</span><span class="destination-info"><span><small>TAKE THE SCENIC ROUTE</small><strong>Kerala</strong></span><span class="destination-arrow">↗</span></span></a>
+  </div>
+</section>
+
+<section class="manifesto" id="journey">
+  <div class="manifesto-image reveal"><img src="https://images.unsplash.com/photo-1474302770737-173ee21bab63?auto=format&fit=crop&w=1400&q=85" alt="Airplane wing above the clouds"><div class="image-caption">SOMEWHERE ABOVE THE EVERYDAY <span>✳</span></div></div>
+  <div class="manifesto-copy reveal"><div class="section-kicker"><span>03</span> THE VOYARA WAY</div><h2>It's not just<br>the <em>destination.</em></h2><p>It's the anticipation. The window seat. The first breath of unfamiliar air. We believe getting there should feel like the beginning of something wonderful.</p><div class="manifesto-stat"><strong>∞</strong><span>possibilities beyond<br>your usual horizon</span></div></div>
+</section>
+
+<section class="featured-flights" id="explore">
+  <div class="section-head reveal"><div><div class="section-kicker"><span>04</span> A LITTLE INSPIRATION</div><h2>Good places.<br><em>Great departures.</em></h2></div><a class="text-link" href="{{ url_for('search') }}">Explore sample flights <span>↗</span></a></div>
+  <div class="flight-preview-list">
+    {% for flight in flights %}
+    <article class="flight-preview reveal">
+      <div class="flight-symbol {{ flight.color }}">✈</div><div class="flight-route"><strong>{{ flight.from_code }} <span>→</span> {{ flight.to_code }}</strong><small>{{ flight.from_city }} to {{ flight.to_city }}</small></div><div class="flight-time"><strong>{{ flight.depart }}</strong><small>Departure</small></div><div class="flight-duration"><span></span><small>{{ flight.duration }} · {{ flight.stops }}</small></div><div class="flight-price"><small>Sample fare from</small><strong>{{ flight.price|inr }}</strong></div><a class="flight-arrow" href="{{ url_for('book', flight_id=flight.id) }}" aria-label="View sample flight {{ flight.id }}">↗</a>
+    </article>
+    {% endfor %}
+  </div>
+  <p class="sample-disclaimer">All schedules and fares above are fictional examples for this project.</p>
+</section>
+
+<section class="closing-cta">
+  <div class="closing-backdrop"></div><div class="closing-content reveal"><div class="section-kicker"><span>05</span> YOUR WORLD, WIDER</div><h2>Let curiosity<br><em>take the lead.</em></h2><a href="#book" class="round-link"><span>Find your flight</span><b>↗</b></a></div><div class="closing-mark" aria-hidden="true">V</div>
+</section>
+{% endblock %}
